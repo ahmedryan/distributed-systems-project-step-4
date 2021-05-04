@@ -1,0 +1,8 @@
+client/node_modules
+client/package-lock.json
+communication/node_modules
+communication/package-lock.json
+rating/node_modules
+rating/package-lock.json
+ride-sharing/node_modules
+ride-sharing/package-lock.json

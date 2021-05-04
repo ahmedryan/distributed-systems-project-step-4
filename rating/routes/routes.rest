@@ -1,0 +1,11 @@
+GET http://localhost:4000/api/ratings
+
+###
+
+POST http://localhost:4000/api/ratings
+Content-Type: application/json
+
+{
+    "name": "Ryan",
+    "rating": 5
+}

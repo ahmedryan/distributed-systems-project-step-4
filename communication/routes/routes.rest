@@ -1,0 +1,6 @@
+POST http://localhost:7000/api/communications
+Content-Type: application/json
+
+{
+    "pairs": "Haha"
+}

@@ -1,0 +1,9 @@
+POST http://localhost:5000/api/drivers
+Content-Type: application/json
+
+{
+    "driver_name": "Ryan",
+    "driver_coordinate_x": 5,
+    "driver_coordinate_y": 5,
+    "car_number": 5
+}
