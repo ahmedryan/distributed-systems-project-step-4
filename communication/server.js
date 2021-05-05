@@ -23,6 +23,7 @@ io.on('connection', (socket) => {
 
     setInterval(function() {
         if(pairs.length != 0) {
+            console.log('emitting to client...');
             socket.emit('transfer-pairs', pairs);
             pairs.splice(0, pairs.length);
         }

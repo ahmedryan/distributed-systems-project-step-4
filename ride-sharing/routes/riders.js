@@ -6,6 +6,7 @@ const Rider = require('../models/rider');
 const router = express.Router();
 
 router.post('/', (req, res) => {
+    
     const rider = new Rider(
         req.body.rider_name, 
         req.body.rider_coordinate_x, 

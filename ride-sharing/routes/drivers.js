@@ -6,6 +6,8 @@ const Driver = require('../models/driver');
 const router = express.Router();
 
 router.post('/', (req, res) => {
+    console.log('driver route...');
+    console.log(req.body);
     const driver = new Driver(
         req.body.driver_name, 
         req.body.driver_coordinate_x, 

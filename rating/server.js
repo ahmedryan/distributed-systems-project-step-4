@@ -16,7 +16,9 @@ const server = app.listen(PORT, () => {
 });
 
 //connecting to database
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser:true, useUnifiedTopology: true});
+const connectionString = process.env.DATABASE_URL;
+mongoose.connect(connectionString,
+    {useNewUrlParser:true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', (e) => console.error(e));
 db.once('open', () => console.log('Connected to Database...'));

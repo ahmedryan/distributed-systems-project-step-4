@@ -1,0 +1,42 @@
+version: '3.0'
+
+
+services:
+    nginx:
+        image: 'nginx'
+        ports:
+            - 8080:80
+        depends_on:
+            - ride-sharing
+            - rating
+        restart: always
+
+    mongodb:
+        image: 'mongo'
+        volumes:
+            - data:/data/db
+        restart: always
+    
+    rating:
+        build: ./rating
+        depends_on: 
+            - mongodb
+        restart: always
+    
+    communication:
+        build: ./communication
+        ports:
+            - 8090:8080
+        restart: always
+    
+    ride-sharing:
+        build: ./ride-sharing
+        depends_on: 
+            - communication
+        restart: always
+
+
+volumes:
+
+    data:
+    

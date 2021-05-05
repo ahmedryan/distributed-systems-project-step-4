@@ -22,7 +22,7 @@ setInterval(() => {
         axios.post(api_communication, {
             pairs: pairs
         }).then((res) => {
-            //console.log(res.data);
+            console.log(res.data);
         }).catch((error) => {
             console.log(error);
         });
