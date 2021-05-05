@@ -16,8 +16,8 @@ socket.on('transfer-pairs', (data) => {
             rating: Math.floor((Math.random() * 5) + 1)
         }).then(res => {
             console.log('#');
-            console.log(res);
-            console.log(`${element.driver.driver_name} paired with ${element.rider.rider_name} # fare is ${element.fare}`);
+            // console.log(res);
+            console.log(`${element.driver} paired with ${element.rider} # fare is ${element.fare}`);
         }).catch(err => {
             console.log('error: ', err);
         });
@@ -41,7 +41,7 @@ setInterval(function() {
         driver_coordinate_y: driver_coordinate_y,
         car_number: car_number
     }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
     }).catch((error) => {
         console.log(error.errno);
     });
@@ -59,7 +59,7 @@ setInterval(function() {
         rider_destination_x: rider_destination_x,
         rider_destination_y: rider_destination_y,
     }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
     }).catch((error) => {
         console.log(error.errno);
     });
