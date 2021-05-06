@@ -23,11 +23,11 @@ io.on('connection', (socket) => {
 
     setInterval(function() {
         if(pairs.length != 0) {
-            console.log('emitting to client...');
+            console.log(`emitting to client from ${process.env.SERVER_LOCATION}...`);
             socket.emit('transfer-pairs', pairs);
             pairs.splice(0, pairs.length);
         }
-    }, 1000);
+    }, 2000);
     
 });
 

@@ -2,10 +2,10 @@ server {
 	listen 80;
 	
 	location /api/drivers {
-		proxy_pass http://ride-sharing:8080;
+		proxy_pass http://${RIDE_SHARING_VARIABLE}:8080;
 	}
 	location /api/riders {
-		proxy_pass http://ride-sharing:8080;
+		proxy_pass http://${RIDE_SHARING_VARIABLE}:8080;
 	}
 	location /api/ratings {
 		proxy_pass http://rating:8080;

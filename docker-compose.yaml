@@ -1,40 +1,103 @@
 version: '3.0'
 
+networks:
+    mynetwork:
+        ipam:
+            config:
+                - subnet: 10.100.0.0/24
 
 services:
-
     mongodb:
         image: 'mongo'
         volumes:
             - data:/data/db
         restart: always
+        networks:
+            mynetwork:
+                ipv4_address: 10.100.0.200
     
-    nginx:
-        build: ./nginx
-        ports:
-            - 8080:80
-        depends_on:
-            - ride-sharing
-            - rating
-        restart: always
-
     rating:
         build: ./rating
         depends_on: 
             - mongodb
         restart: always
-    
-    communication:
-        build: ./communication
-        ports:
-            - 8090:8080
+        networks:
+            mynetwork:
+                ipv4_address: 10.100.0.100
+
+    nginx-dhaka:
+        build: ./nginx
+#        ports:
+#            - 8080:80
+        depends_on:
+            - ride-sharing-dhaka
+            - rating
+        environment:
+            - RIDE_SHARING_VARIABLE=ride-sharing-dhaka
+        command: /bin/sh -c "envsubst < /etc/nginx/conf.d/nginx.conf.template > /etc/nginx/conf.d/nginx.conf && nginx -g 'daemon off;'"
         restart: always
+        networks:
+            mynetwork:
+                ipv4_address: 10.100.0.2
+
+    nginx-ctg:
+        build: ./nginx
+#        ports:
+#            - 8080:80
+        depends_on:
+            - ride-sharing-ctg
+            - rating
+        environment:
+            - RIDE_SHARING_VARIABLE=ride-sharing-ctg
+        command: /bin/sh -c "envsubst < /etc/nginx/conf.d/nginx.conf.template > /etc/nginx/conf.d/nginx.conf && nginx -g 'daemon off;'"
+        restart: always
+        networks:
+            mynetwork:
+                ipv4_address: 10.100.0.20
     
-    ride-sharing:
+    communication-dhaka:
+        build: ./communication
+ #       ports:
+ #           - 8090:8080
+        environment:
+            - SERVER_LOCATION=dhaka
+        restart: always
+        networks:
+            mynetwork:
+                ipv4_address: 10.100.0.3
+
+    communication-ctg:
+        build: ./communication
+ #       ports:
+ #           - 8090:8080
+        environment:
+            - SERVER_LOCATION=chittagong
+        restart: always
+        networks:
+            mynetwork:
+                ipv4_address: 10.100.0.30
+    
+    ride-sharing-dhaka:
         build: ./ride-sharing
         depends_on: 
-            - communication
+            - communication-dhaka
+        environment:
+            - SERVER_LOCATION=dhaka
         restart: always
+        networks:
+            mynetwork:
+                ipv4_address: 10.100.0.4
+
+    ride-sharing-ctg:
+        build: ./ride-sharing
+        depends_on: 
+            - communication-ctg
+        environment:
+            - SERVER_LOCATION=chittagong
+        restart: always
+        networks:
+            mynetwork:
+                ipv4_address: 10.100.0.40
 
 
 volumes:

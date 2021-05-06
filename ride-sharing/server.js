@@ -14,10 +14,17 @@ var riders = [];
 var drivers = [];
 var pairs = [];
 
+let api_communication;
+console.log(process.env.SERVER_LOCATION);
+if (process.env.SERVER_LOCATION === 'dhaka') {
+    api_communication = 'http://communication-dhaka:8080/api/communications/';
+} else if (process.env.SERVER_LOCATION === 'chittagong') {
+    api_communication = 'http://communication-ctg:8080/api/communications/';
+}
+
 setInterval(() => {
     make_pairs();
 
-    const api_communication = process.env.API_COMMUNICATION;
     if (pairs.length != 0) {
         axios.post(api_communication, {
             pairs: pairs
