@@ -21,8 +21,8 @@ services:
     server-nginx-dhaka:
         build: server-nginx
         depends_on:
-            - ride-sharing-dhaka
-            - rating
+            - service-ride-sharing-dhaka
+            - service-rating
         environment:
             - RIDE_SHARING_VARIABLE=service-ride-sharing-dhaka
         command: /bin/sh -c "envsubst < /etc/server-nginx/conf.d/server-nginx.conf.template > /etc/server-nginx/conf.d/server-nginx.conf && server-nginx -g 'daemon off;'"
@@ -34,7 +34,7 @@ services:
     service-rating:
         build: service-rating
         depends_on:
-            - mongodb
+            - database-mongodb
         restart: always
         networks:
             mynetwork:
@@ -43,8 +43,8 @@ services:
     server-nginx-ctg:
         build: server-nginx
         depends_on:
-            - ride-sharing-ctg
-            - rating
+            - service-ride-sharing-ctg
+            - service-rating
         environment:
             - RIDE_SHARING_VARIABLE=service-ride-sharing-ctg
         command: /bin/sh -c "envsubst < /etc/server-nginx/conf.d/server-nginx.conf.template > /etc/server-nginx/conf.d/server-nginx.conf && server-nginx -g 'daemon off;'"
@@ -78,7 +78,7 @@ services:
     service-ride-sharing-dhaka:
         build: service-ride-sharing
         depends_on: 
-            - communication-dhaka
+            - service-communication-dhaka
         environment:
             - SERVER_LOCATION=dhaka
         restart: always
@@ -90,7 +90,7 @@ services:
         build: service-ride-sharing
         restart: always
         depends_on: 
-            - communication-ctg
+            - service-communication-ctg
         environment:
             - SERVER_LOCATION=chittagong
         networks:
