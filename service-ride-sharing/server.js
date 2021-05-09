@@ -17,15 +17,15 @@ var pairs = [];
 let api_communication;
 console.log(process.env.SERVER_LOCATION);
 if (process.env.SERVER_LOCATION === 'dhaka') {
-    api_communication = 'http://communication-dhaka:8080/api/communications/';
+    api_communication = 'http://service-communication-dhaka:8080/api/communications/';
 } else if (process.env.SERVER_LOCATION === 'chittagong') {
-    api_communication = 'http://communication-ctg:8080/api/communications/';
+    api_communication = 'http://service-communication-ctg:8080/api/communications/';
 }
 
 setInterval(() => {
     make_pairs();
 
-    if (pairs.length != 0) {
+    if (pairs.length !== 0) {
         axios.post(api_communication, {
             pairs: pairs
         }).then((res) => {
