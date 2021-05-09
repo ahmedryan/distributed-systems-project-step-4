@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     });
 
     try {
-        console.log('rating post service...');
+        console.log('service-rating post service...');
         console.log(req.body);
         const newRating = await rating.save();
         res.status(201).json(newRating);

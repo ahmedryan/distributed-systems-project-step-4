@@ -1,8 +1,8 @@
 client/node_modules
 client/package-lock.json
-communication/node_modules
-communication/package-lock.json
-rating/node_modules
-rating/package-lock.json
-ride-sharing/node_modules
-ride-sharing/package-lock.json
+service-communication/node_modules
+service-communication/package-lock.json
+service-rating/node_modules
+service-rating/package-lock.json
+service-ride-sharing/node_modules
+service-ride-sharing/package-lock.json
