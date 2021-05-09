@@ -15,7 +15,7 @@ services:
             - data:/data/db
         restart: always
         networks:
-            mynetwork:
+            network-distributed-systems-project:
                 ipv4_address: 10.100.0.200
 
     server-nginx-dhaka:
@@ -28,7 +28,7 @@ services:
         command: /bin/sh -c "envsubst < /etc/server-nginx/conf.d/server-nginx.conf.template > /etc/server-nginx/conf.d/server-nginx.conf && server-nginx -g 'daemon off;'"
         restart: always
         networks:
-            mynetwork:
+            network-distributed-systems-project:
                 ipv4_address: 10.100.0.2
 
     service-rating:
@@ -37,7 +37,7 @@ services:
             - database-mongodb
         restart: always
         networks:
-            mynetwork:
+            network-distributed-systems-project:
                 ipv4_address: 10.100.0.100
 
     server-nginx-ctg:
@@ -50,7 +50,7 @@ services:
         command: /bin/sh -c "envsubst < /etc/server-nginx/conf.d/server-nginx.conf.template > /etc/server-nginx/conf.d/server-nginx.conf && server-nginx -g 'daemon off;'"
         restart: always
         networks:
-            mynetwork:
+            network-distributed-systems-project:
                 ipv4_address: 10.100.0.20
 
     service-communication-dhaka:
@@ -61,7 +61,7 @@ services:
         environment:
             - SERVER_LOCATION=dhaka
         networks:
-            mynetwork:
+            network-distributed-systems-project:
                 ipv4_address: 10.100.0.3
 
     service-communication-ctg:
@@ -72,7 +72,7 @@ services:
         environment:
             - SERVER_LOCATION=chittagong
         networks:
-            mynetwork:
+            network-distributed-systems-project:
                 ipv4_address: 10.100.0.30
 
     service-ride-sharing-dhaka:
@@ -83,7 +83,7 @@ services:
             - SERVER_LOCATION=dhaka
         restart: always
         networks:
-            mynetwork:
+            network-distributed-systems-project:
                 ipv4_address: 10.100.0.4
 
     service-ride-sharing-ctg:
@@ -94,7 +94,7 @@ services:
         environment:
             - SERVER_LOCATION=chittagong
         networks:
-            mynetwork:
+            network-distributed-systems-project:
                 ipv4_address: 10.100.0.40
 
 
